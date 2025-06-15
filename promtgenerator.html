@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kling AI Prompt Generator - Variatif Background & Kamera</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.5rem;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+    #output {
+      margin-top: 2rem;
+      background: #f4f4f4;
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      min-height: 150px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Prompt Generator Kling AI</h2>
+    <label for="outfit">Jenis Outfit</label>
+    <select id="outfit">
+      <option>Gamis</option>
+      <option>Tunik</option>
+      <option>Dress</option>
+      <option>Setelan</option>
+      <option>Kaftan</option>
+    </select>
+
+    <label for="warna">Warna Outfit</label>
+    <input id="warna" type="text" placeholder="Contoh: dusty pink, fuchsia, sage green" />
+
+    <label for="detail">Detail Outfit</label>
+    <input id="detail" type="text" placeholder="Contoh: bordir mutiara, kancing emas" />
+
+    <label for="potongan">Potongan</label>
+    <select id="potongan">
+      <option>Menjuntai lembut</option>
+      <option>Flowy A-line</option>
+      <option>Oversize santai</option>
+      <option>Modis fit body</option>
+    </select>
+
+    <label for="hijab">Hijab</label>
+    <select id="hijab">
+      <option>Hijab warna krem muda</option>
+      <option>Hijab polos netral</option>
+      <option>Tidak berhijab</option>
+    </select>
+
+    <label for="alas_kaki">Alas Kaki</label>
+    <input id="alas_kaki" type="text" placeholder="Contoh: heels nude, sandal putih, sneakers putih" />
+
+    <button onclick="generatePrompt()">Buat Prompt</button>
+
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const backgrounds = [
+      "ruangan mewah dengan dinding marmer putih keemasan, lampu gantung kristal megah, dan sofa beludru krem dengan vas bunga segar di sudut",
+      "interior modern minimalis dengan dinding putih bersih, tanaman hijau besar di sudut, dan lampu LED dengan desain futuristik",
+      "taman outdoor dengan bunga warna-warni dan pencahayaan natural matahari sore yang hangat",
+      "ruangan artistik dengan dinding bercat pastel, lukisan abstrak besar, dan karpet bermotif geometris warna cerah",
+      "studio foto dengan latar belakang monokrom abu-abu, pencahayaan softbox yang merata, dan lantai kayu gelap",
+      "ruangan bergaya bohemian dengan banyak tekstur kain, karpet warna-warni, dan dekorasi etnik yang kaya",
+      "interior vintage dengan wallpaper bunga klasik, lampu meja antik, dan meja kayu dengan vas bunga segar",
+      "ruangan kontemporer dengan jendela besar menghadap kota, sofa modular abu-abu, dan tanaman indoor minimalis",
+      "ruangan hangat bergaya Scandinavian dengan dinding putih, furnitur kayu terang, dan selimut rajut di sofa",
+      "ruangan elegan dengan wallpaper emas lembut, lukisan potret klasik, dan karpet beludru merah marun",
+    ];
+
+    const cameraStyles = [
+      "Kamera sinematik mengikuti dari depan dan samping, dengan transisi halus, efek depth of field, serta gerakan slow motion anggun.",
+      "Pengambilan gambar close-up yang lembut dengan fokus pada ekspresi wajah dan detail outfit, menggunakan pencahayaan natural.",
+      "Kamera bergerak perlahan mengikuti langkah kaki, menampilkan outfit secara penuh dengan latar belakang blur artistik.",
+      "Shot statis dengan efek bokeh, menonjolkan warna dan tekstur kain pada outfit sambil model berdiri anggun.",
+      "Pengambilan gambar dinamis dengan sudut rendah, memberikan kesan dramatis dan kekuatan pada pose model.",
+      "Kamera bergerak horizontal dari samping dengan fokus tajam, memperlihatkan detail aksesoris dan gerakan tangan.",
+      "Shot wide angle di ruangan luas, menampilkan keseluruhan suasana dengan model berjalan perlahan ke arah kamera.",
+      "Pengambilan gambar dari sudut atas dengan pencahayaan lembut, menonjolkan bentuk dan siluet outfit.",
+      "Kamera berputar halus di sekitar model tanpa menampilkan bagian belakang, menyorot sisi depan dan samping outfit.",
+      "Shot medium dengan pencahayaan kontras tinggi, memberikan kesan elegan dan misterius pada video.",
+    ];
+
+    function getRandomItem(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generatePrompt() {
+      const outfit = document.getElementById("outfit").value;
+      const warna = document.getElementById("warna").value.trim();
+      const detail = document.getElementById("detail").value.trim();
+      const potongan = document.getElementById("potongan").value;
+      const hijab = document.getElementById("hijab").value;
+      const alasKaki = document.getElementById("alas_kaki").value.trim();
+
+      const bg = getRandomItem(backgrounds);
+      const cam = getRandomItem(cameraStyles);
+
+      const prompt = `Seorang wanita Indonesia yang anggun dan cantik, berkulit cerah bersih. Ia mengenakan ${outfit} berwarna ${warna} dengan detail ${detail} dan potongan ${potongan} yang membuat penampilannya tampak feminin dan elegan. Ia memakai ${hijab}, serta ${alasKaki}.\n\nWanita tersebut berjalan perlahan ke arah kamera di dalam ${bg}.\n\n${cam}\n\nSetelah beberapa langkah, wanita tersebut berhenti, menatap kamera sambil tersenyum percaya diri. Tangannya menyentuh bagian depan outfit dengan lembut. Tatapan tenang, penuh pesona wanita modern.\n\nTone warna warm golden, pencahayaan natural dramatis, resolusi ultra HD. Nuansa video sangat profesional dan berkelas. Cocok untuk menampilkan fashion wanita dalam gaya sinematik elegan.`;
+
+      document.getElementById("output").textContent = prompt;
+    }
+  </script>
+</body>
+</html>
